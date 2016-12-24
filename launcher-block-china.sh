@@ -7,14 +7,13 @@
 
 
 
-
+# pulling down the firewall rules file
 wget -P . https://raw.githubusercontent.com/bobbybrooks/firewall-stuff/master/iptables.firewall.rules
 sudo mv iptables.firewall.rules /etc/iptables.firewall.rules
 
 
-# Apply the firewall rules
+# Apply the firewall rules (this will need to be done again later, but to get things running
 sudo iptables-restore < /etc/iptables.firewall.rules
-# Need to have a line that uncomments the china rule set in iptables.firewall.rules
 
 
 # This ensures it's run every time the system boots
@@ -32,10 +31,35 @@ sudo chmod +x /etc/block-china.sh
 # Now let's run it
 /etc/block-china.sh
 
+# remove the china-rule from /etc/iptables.firewall.rules
+sudo sed 's/#removeme //g' /etc/iptables.firewall.rules
+# And reload the rules with the update
+sudo iptables-restore < /etc/iptables.firewall.rules
+
+
+#write out current crontab
+sudo crontab -l > mycron
+#echo new cron into cron file
+sudo echo "* 5 * * * /etc/block-china.sh" >> mycron
+#install new cron file
+sudo crontab mycron
+sudo rm mycron
 echo
-echo 'To make this automatic'
-echo 'run "crontab -e"'
-echo 'and add a line like this'
+echo 'Setting cronjob to run /etc/block-china.sh at 5am every day'
+echo 'with this line:'
 echo '* 5 * * * /etc/block-china.sh'
-echo 'This will run /etc/block-china.sh at 5am every day'
+echo
+echo 'run "sudo crontab -e"'
+echo 'to make changes'
+echo
+echo 'Here's the format'
+echo '* * * * * "command to be executed"'
+echo '- - - - -'
+echo '| | | | |'
+echo '| | | | ----- Day of week (0 - 7) (Sunday=0 or 7)'
+echo '| | | ------- Month (1 - 12)'
+echo '| | --------- Day of month (1 - 31)'
+echo '| ----------- Hour (0 - 23)'
+echo '------------- Minute (0 - 59)'
+echo
 
