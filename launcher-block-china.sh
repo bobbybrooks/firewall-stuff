@@ -26,7 +26,7 @@ sudo chmod +x /etc/network/if-pre-up.d/firewall
 sudo apt-get install ipset -y
 
 # This is where we start blocking China
-wget -P https://raw.githubusercontent.com/bobbybrooks/firewall-stuff/master/block-china.sh .
+wget -P . https://raw.githubusercontent.com/bobbybrooks/firewall-stuff/master/block-china.sh
 sudo mv block-china.sh /etc/
 sudo chmod +x /etc/block-china.sh
 # Now let's run it
