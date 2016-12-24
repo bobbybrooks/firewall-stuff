@@ -8,7 +8,7 @@
 
 
 
-wget -P https://raw.githubusercontent.com/bobbybrooks/firewall-stuff/master/iptables.firewall.rules
+wget -P . https://raw.githubusercontent.com/bobbybrooks/firewall-stuff/master/iptables.firewall.rules
 sudo mv iptables.firewall.rules /etc/iptables.firewall.rules
 
 
