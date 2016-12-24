@@ -14,6 +14,8 @@ sudo mv iptables.firewall.rules /etc/iptables.firewall.rules
 
 # Apply the firewall rules
 sudo iptables-restore < /etc/iptables.firewall.rules
+# Need to have a line that uncomments the china rule set in iptables.firewall.rules
+
 
 # This ensures it's run every time the system boots
 sudo echo '#!/bin/sh' > /etc/network/if-pre-up.d/firewall
