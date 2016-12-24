@@ -31,8 +31,9 @@ sudo chmod +x /etc/block-china.sh
 # Now let's run it
 /etc/block-china.sh
 
-# remove the china-rule from /etc/iptables.firewall.rules
-sudo sed 's/#removeme //g' /etc/iptables.firewall.rules
+# remove the prefix for the china-rule from /etc/iptables.firewall.rules
+sudo sed -i 's/#removeme //g' /etc/iptables.firewall.rules
+
 # And reload the rules with the update
 sudo iptables-restore < /etc/iptables.firewall.rules
 
