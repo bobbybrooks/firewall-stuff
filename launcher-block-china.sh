@@ -39,12 +39,13 @@ sudo iptables-restore < /etc/iptables.firewall.rules
 
 
 #write out current crontab
-sudo crontab -l > mycron
+sudo crontab -l > mycron1
+cat mycron1 | grep -v 'etc/block-china.sh' >> mycron
 #echo new cron into cron file
 sudo echo "* 5 * * * /etc/block-china.sh" >> mycron
 #install new cron file
 sudo crontab mycron
-sudo rm mycron
+sudo rm mycron*
 echo
 echo 'Setting cronjob to run /etc/block-china.sh at 5am every day'
 echo 'with this line:'
