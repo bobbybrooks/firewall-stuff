@@ -54,7 +54,7 @@ echo
 echo 'run "sudo crontab -e"'
 echo 'to make changes'
 echo
-echo 'Here's the format'
+echo "Here's the format"
 echo '* * * * * "command to be executed"'
 echo '- - - - -'
 echo '| | | | |'
